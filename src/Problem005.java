@@ -8,7 +8,6 @@ public class Problem005 {
         while(!isDividableByAll(20, number)) {
             System.out.println(number);
             number += 20;
-            System.out.println("This is a test for GitHub");
         }
         System.out.println("\nThe smallest number is: " + number);
 
