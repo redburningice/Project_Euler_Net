@@ -9,6 +9,8 @@ public class Problem004 {
     Find the largest palindrome made from the product of two 3-digit numbers.
      */
     public static void main(String[] args) {
+        // total time: 0,287 s
+        TimeHelper time = new TimeHelper();
         ArrayList<Integer> results = new ArrayList<>();
 
         for(int a = 1; a <= 999; a++) {
@@ -24,6 +26,7 @@ public class Problem004 {
         results.sort((o1, o2) -> Integer.compare(o1, o2));
         System.out.println(results);
         System.out.println("max: " + results.get(results.size()-1));
+        time.printDuration();
     }
 
     public static boolean isPalindrome(int input) {

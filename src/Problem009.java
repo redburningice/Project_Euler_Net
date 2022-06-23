@@ -12,6 +12,9 @@ public class Problem009 {
      * Find the product abc.
      */
     public static void main(String[] args) {
+        // total time: 0,036 s
+        TimeHelper time = new TimeHelper();
+
         for(int b = 1; b < 1000; b++) {
             for(int a = 1; a < b; a++) {
                 int c = 1000 - b - a;
@@ -21,5 +24,7 @@ public class Problem009 {
                 }
             }
         }
+
+        time.printDuration();
     }
 }

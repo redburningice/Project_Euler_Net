@@ -24,6 +24,9 @@ public class Problem012 {
     static final int MAX_FACTORS = 500;
 
     public static void main(String[] args) {
+
+        TimeHelper time = new TimeHelper();
+
         int factors = 0;
         int highestNumberOfFactors = 0;
         int number = 1;
@@ -37,6 +40,8 @@ public class Problem012 {
             }
             System.out.println(String.format("%,d", sum) + ": " + "(" + getFactors(sum).size() + ") " + "(" + highestNumberOfFactors + ") " + getFactors(sum));
         }
+
+        time.printDuration();
     }
 
     private static ArrayList<Integer> getFactors(int sum) {

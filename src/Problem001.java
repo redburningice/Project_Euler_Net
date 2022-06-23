@@ -4,6 +4,8 @@ public class Problem001 {
     Find the sum of all the multiples of 3 or 5 below 1000.
      */
     public static void main(String[] args) {
+        // ~~~~~ total time: 0,021 s ~~~~~
+        TimeHelper time = new TimeHelper();
         int inputNumber = 1000;
         int resultSum = 0;
         for(int i = 1; i < inputNumber; i++) {
@@ -14,5 +16,6 @@ public class Problem001 {
 
         }
         System.out.println("\nResult: " + resultSum);
+        time.printDuration();
     }
 }

@@ -6,6 +6,9 @@ public class Problem007 {
     What is the 10 001st prime number?
      */
     public static void main(String[] args) {
+        // total time: 0,264 s
+        TimeHelper time = new TimeHelper();
+
         long currentNumber = 3;
         int maxCount = 6;
 
@@ -29,5 +32,7 @@ public class Problem007 {
         }
         System.out.println(uniquePrimes);
         System.out.println("10 001st prime number = " + uniquePrimes.get(10_000));
+
+        time.printDuration();
     }
 }
