@@ -94,7 +94,7 @@ public class Problem008 {
                 maxString = entry.getKey();
             }
         }
-        System.out.println("Greatest Product: " + maxString + " = " + maxResult);
+        System.out.println("Greatest Product: " + maxString + " = " + String.format("%,d", maxResult));
     }
 
     private static void printHashmapEntries(HashMap<String, Integer> input) {
