@@ -21,24 +21,26 @@ public class Problem012 {
      * @param args
      */
     // inputs
-    static final int MAX_FACTORS = 500;
+    static final int MAX_FACTORS = 200;
 
     public static void main(String[] args) {
-
+        // total time: 2229,935 s ~37 min //todo:fabian try to make the program faster
+        // benchmark with 200 MAX_FACTORS: 9,941 s
         TimeHelper time = new TimeHelper();
 
         int factors = 0;
         int highestNumberOfFactors = 0;
         int number = 1;
         int sum = 0;
-        while (getFactors(sum).size() < MAX_FACTORS) {
+        while (getFactorsCount(sum) < MAX_FACTORS) {
             sum = number + sum;
             number++;
             factors++;
-            if (getFactors(sum).size() > highestNumberOfFactors) {
-                highestNumberOfFactors = getFactors(sum).size();
+            if (getFactorsCount(sum) > highestNumberOfFactors) {
+                highestNumberOfFactors = getFactorsCount(sum);
             }
-            System.out.println(String.format("%,d", sum) + ": " + "(" + getFactors(sum).size() + ") " + "(" + highestNumberOfFactors + ") " + getFactors(sum));
+//            System.out.println(String.format("%,d", sum) + ": " + "(" + getFactors(sum).size() + ") " + "(" + highestNumberOfFactors + ") " + getFactors(sum));
+            System.out.print(highestNumberOfFactors+"/" + MAX_FACTORS + "\r");
         }
 
         time.printDuration();
@@ -52,6 +54,16 @@ public class Problem012 {
             }
         }
         output.add(sum);
+        return output;
+    }
+
+    private static int getFactorsCount(int sum) {
+        int output = 0;
+        for(int i = 1; i <= sum / 2; i++) {
+            if (sum % i == 0) {
+                output++;
+            }
+        }
         return output;
     }
 }
