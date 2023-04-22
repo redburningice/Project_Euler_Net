@@ -32,4 +32,8 @@ public class Problem011 {
     public static void main(String[] args) {
 
     }
+
+    private static int[] horizontalAdjacent() {
+
+    }
 }
