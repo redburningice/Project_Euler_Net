@@ -6,6 +6,8 @@ public class Problem003 {
     What is the largest prime factor of the number 600_851_475_143 ?
      */
     public static void main(String[] args) {
+        // total time: 0,000 s
+        TimeHelper time = new TimeHelper();
         long input = 600_851_475_143L;
         long buffer = input;
 
@@ -25,7 +27,7 @@ public class Problem003 {
         } while(buffer != 1);
 
         System.out.println(actualPrimes);
-
+        time.printDuration();
     }
 
     // This was not a good approach, since there are quite a lot of prime numbers up to the defined input number.

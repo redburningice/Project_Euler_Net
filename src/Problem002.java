@@ -7,8 +7,10 @@ public class Problem002 {
     By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
      */
     public static void main(String[] args) {
+        // total time: 0,019 s
+        TimeHelper time = new TimeHelper();
         approach2();
-
+        time.printDuration();
     }
 
     public static void approach2() {

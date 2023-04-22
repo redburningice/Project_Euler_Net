@@ -9,6 +9,9 @@ public class Problem010 {
      * Find the sum of all the primes below two million.
      */
     public static void main(String[] args) {
+        // total time: 219,603 s
+        TimeHelper time = new TimeHelper();
+
         ArrayList<Long> uniquePrimes = new ArrayList<>();
         uniquePrimes.add(FIRST_PRIME);
         long sum = FIRST_PRIME;
@@ -28,5 +31,7 @@ public class Problem010 {
         }
         System.out.println(uniquePrimes.toString());
         System.out.println("Sum: " + sum);
+
+        time.printDuration();
     }
 }

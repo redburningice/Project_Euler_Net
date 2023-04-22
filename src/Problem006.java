@@ -10,6 +10,8 @@ public class Problem006 {
     Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
      */
     public static void main(String[] args) {
+        // total time: 0,027 s
+        TimeHelper time = new TimeHelper();
         int min = 0;
         int max = 100;
         int squaresSum = 0;
@@ -25,5 +27,6 @@ public class Problem006 {
                         "\nSquare of sum: " + (int) sqrt(sumSquared) + "² = " + sumSquared +
                         "\nDifference: " + difference);
 
+        time.printDuration();
     }
 }
