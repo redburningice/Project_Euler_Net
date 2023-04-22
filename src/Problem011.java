@@ -153,8 +153,4 @@ public class Problem011 {
         }
         System.out.println("Max Product Diagonal Left = " + String.format("%,d", maxProduct) + "  with Factors: " + Arrays.toString(maxFactors));
     }
-
-    private static int[] horizontalAdjacent() {
-
-    }
 }
