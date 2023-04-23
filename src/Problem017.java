@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Problem017 {
 	/**
@@ -10,13 +11,22 @@ public class Problem017 {
 	 The use of "and" when writing out numbers is in compliance with British usage.
 	 */
 	public static void main( String[] args ) {
-		System.out.println( intToWords(521) );
+		System.out.println( intToWords( 2001 ) );
+		System.out.println( intToWords( 23113 ) );
+		System.out.println( intToWords( 23167 ) );
+		System.out.println(intToWords( 1023 ));
+		intSeries( 150 );
+	}
+	
+	static int countLetters(int maxInt) {
+		return 1;
 	}
 	
 	static ArrayList<String> intSeries(int maxInt) {
 		ArrayList<String> output = new ArrayList<>();
 		for(int i = 1; i <= maxInt; i++) {
-			output.add(intToWords(i));
+			output.add(intToWords(i).replaceAll( " ", "" ) );
+			System.out.println(intToWords(i));
 		}
 		return output;
 	}
@@ -26,16 +36,40 @@ public class Problem017 {
 		String numberStr = Integer.toString( number );
 		ArrayList<String> output = new ArrayList<>();
 		int counter = 0;
-		for(int i = numberStr.length() - 1; i >= 0; i--) {
+		for(int i = numberStr.length() - 1; i >= 0; i-=3) {
 			
+			String hundreds = "";
+			try {
+				hundreds += numberStr.charAt(i - 2);
+			} catch (IndexOutOfBoundsException e) {
+			}
 			
+			try {
+				hundreds += numberStr.charAt(i - 1);
+			} catch (IndexOutOfBoundsException e) {
+			}
+			hundreds += numberStr.charAt(i);
+			hundreds = hunderter( hundreds );
+			switch(counter) {
+				case 1: hundreds += " thousand"; break;
+				case 2: hundreds += " million"; break;
+				case 3: hundreds += " billion"; break;
+				case 4: hundreds += " trillion"; break;
+				default: break;
+			}
+			
+			output.add(hundreds);
 			counter++;
 		}
-		
+		Collections.reverse(output);
 		return String.join( " ", output );
 	}
 	
 	static String hunderter(String number) {
+		if (number.startsWith( "00" ))
+			number = String.valueOf( number.charAt( 2 ) );
+		else if (number.startsWith( "0" ))
+			number = number.charAt(1) + "" + number.charAt( 2 );
 		ArrayList<String> output = new ArrayList<>();
 		for(int i = 1; i <= number.length(); i++) {
 			if ((number.length() - i + 1) % 3 == 0) { // Hunderter
@@ -44,10 +78,15 @@ public class Problem017 {
 					output.add("and");
 			}
 			if ((number.length() - i + 1) % 3 == 2) { // Zehner
-				if (number.charAt( i-1 ) == '1')
+				if (number.charAt( i-1 ) == '1') {
 					output.add(zehner(number.charAt( i-1 ), number.charAt( i )));
-				
-				output.add( zehner( number.charAt( i - 1 ) ) );
+					break;
+				} else if (number.charAt(i) == '0') {
+					output.add(zehner(number.charAt( i-1 )));
+					break;
+				} else {
+					output.add( zehner( number.charAt( i - 1 ) ) );
+				}
 			}
 			if ((number.length() - i + 1) % 3 == 1) // Einer
 				output.add(einer(number.charAt( i - 1 )));
@@ -66,7 +105,7 @@ public class Problem017 {
 			case '7': return "seven";
 			case '8': return "eight";
 			case '9': return "nine";
-			default: return null;
+			default: return "";
 		}
 	}
 	
