@@ -11,22 +11,22 @@ public class Problem017 {
 	 The use of "and" when writing out numbers is in compliance with British usage.
 	 */
 	public static void main( String[] args ) {
-		System.out.println( intToWords( 2001 ) );
-		System.out.println( intToWords( 23113 ) );
-		System.out.println( intToWords( 23167 ) );
-		System.out.println(intToWords( 1023 ));
-		intSeries( 150 );
-	}
-	
-	static int countLetters(int maxInt) {
-		return 1;
+		ArrayList<String> list = new ArrayList<>();
+		int countLetters = 0;
+		list = intSeries( 1000 );
+		for(String s : list) {
+			String modifiedStr = s.replaceAll( " ", "" );
+			modifiedStr = modifiedStr.trim();
+			countLetters += modifiedStr.length();
+			System.out.println(s + " | " + modifiedStr.length());
+		}
+		System.out.println(countLetters);
 	}
 	
 	static ArrayList<String> intSeries(int maxInt) {
 		ArrayList<String> output = new ArrayList<>();
 		for(int i = 1; i <= maxInt; i++) {
-			output.add(intToWords(i).replaceAll( " ", "" ) );
-			System.out.println(intToWords(i));
+			output.add(intToWords(i));
 		}
 		return output;
 	}
@@ -74,17 +74,21 @@ public class Problem017 {
 		for(int i = 1; i <= number.length(); i++) {
 			if ((number.length() - i + 1) % 3 == 0) { // Hunderter
 				output.add(einer(number.charAt( i - 1 )) + " hundred");
-				if (number.charAt( i ) != '0' && number.charAt( i + 1 ) != '0')
+				if (number.charAt( i ) != '0' || number.charAt( i + 1 ) != '0')
 					output.add("and");
 			}
 			if ((number.length() - i + 1) % 3 == 2) { // Zehner
 				if (number.charAt( i-1 ) == '1') {
 					output.add(zehner(number.charAt( i-1 ), number.charAt( i )));
 					break;
+				} else if (number.charAt( i ) == '0' && number.charAt( i - 1 ) == '0') {
+					break;
 				} else if (number.charAt(i) == '0') {
 					output.add(zehner(number.charAt( i-1 )));
 					break;
-				} else {
+				}
+				
+				else {
 					output.add( zehner( number.charAt( i - 1 ) ) );
 				}
 			}
@@ -122,7 +126,7 @@ public class Problem017 {
 			case "17": return "seventeen";
 			case "18": return "eighteen";
 			case "19": return "nineteen";
-			default: return null;
+			default: return "";
 		}
 	}
 	
@@ -130,13 +134,13 @@ public class Problem017 {
 		switch(zehner) {
 			case '2': return "twenty";
 			case '3': return "thirty";
-			case '4': return "fourty";
+			case '4': return "forty";
 			case '5': return "fifty";
 			case '6': return "sixty";
 			case '7': return "seventy";
 			case '8': return "eighty";
 			case '9': return "ninety";
-			default: return null;
+			default: return "";
 		}
 	}
 }
